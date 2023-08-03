@@ -1,0 +1,40 @@
+{
+  "client-public-client-created": ["cascade-subscription-to-client-public-client-created"],
+  "client-public-site-added": ["cascade-subscription-to-client-public-site-added"],
+  "cascade-create-schedule-plan": ["cascade-subscription-haulogy-to-cascade-create-schedule-plan"],
+  "cascade-private-echeancier-created": [
+    "cascade-subscription-to-cascade-private-echeancier-created",
+    "cascade-haulogy-subscription-to-cascade-private-echeancier-created"
+  ],
+  "cascade-fee-item-created": ["cascade-subscription-cascade-fee-item-created"],
+  "cascade-meter-reading-item-created": ["cascade-subscription-cascade-meter-reading-item-created"],
+  "cascade-b2c-meter-reading-item-created": [
+    "cascade-invoice-subscription-cascade-b2c-meter-reading-item-created"
+  ],
+  "invoicing-public-document-published": [],
+  "dam-public-elmy-f-delivery-point-entered": [
+    "cascade-subscription-to-dam-public-elmy-f-delivery-point-entered",
+    "cascade-subscription-delivery-point-specifications-to-dam-public-elmy-f-delivery-point-entered",
+    "cascade-haulogy-subscription-to-dam-public-elmy-f-delivery-point-entered"
+  ],
+  "dam-public-delivery-point-entered": [
+    "cascade-subscription-subscription-to-dam-public-delivery-point-entered",
+    "cascade-point-haulogy-dam-public-delivery-point-entered",
+    "cascade-point-subscription-to-dam-public-delivery-point-entered"
+  ],
+  "dam-public-delivery-point-exited": [
+    "cascade-subscription-to-dam-public-delivery-point-exited",
+    "cascade-point-dam-public-delivery-point-exited"
+  ],
+  "dam-public-elmy-f-delivery-point-exited": [
+    "cascade-subscription-to-dam-public-elmy-f-delivery-point-exited"
+  ],
+  "dam-public-new-f12-file": ["cascade-subscription-dam-public-new-f12-file"],
+  "dam-public-new-f15-file": ["cascade-subscription-dam-public-new-f15-file"],
+  "dam-public-new-r15-file": ["cascade-subscription-dam-public-new-r15-file"],
+  "dam-public-new-r17-file": ["cascade-subscription-dam-public-new-r17-file"],
+  "dam-public-elmy-f-new-r15-file": ["cascade-subscription-to-dam-public-new-r15-elmy-f-file"],
+  "payment-public-cancel-payment-request": [],
+  "payment-public-create-payment-request": [],
+  "payment-public-create-payment-request-v1.0.0": []
+}
