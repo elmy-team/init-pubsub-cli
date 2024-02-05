@@ -1,4 +1,5 @@
-import { readFile } from 'fs/promises';
+#! /usr/bin/env node
+import { readFile, access, constants } from 'fs/promises';
 
 import { PubSub, Topic } from '@google-cloud/pubsub';
 import dotenv from 'dotenv';
@@ -39,18 +40,36 @@ async function createTopicsAndSubscriptions(pubsub: PubSub, mappings: Record<str
   }
 }
 
+async function possiblyReadFromDotEnv(dotenvPath: string) {
+  await access(dotenvPath, constants.F_OK)
+    .then(() => {
+      const config = dotenv.config({ path: dotenvPath });
+      if (config.error) {
+        throw config.error;
+      }
+    })
+    .catch(() => {
+      console.log(`Warning: no ${dotenvPath} found. Continuing ...`);
+    });
+}
+
 async function main() {
-  const config = dotenv.config({ path: './scripts/initPubSub/.env' });
-  if (config.error) {
-    throw config.error;
-  }
+  await possiblyReadFromDotEnv('./.env');
+
   // Check if PUBSUB_EMULATOR_HOST environment variable is set
   if (!process.env.PUBSUB_EMULATOR_HOST) {
     console.error('PUBSUB_EMULATOR_HOST environment variable is not set');
     process.exit(1);
   }
+  // Check if PUBSUB_PROJECT_ID environment variable is set
+  if (!process.env.PUBSUB_PROJECT_ID) {
+    console.error('PUBSUB_PROJECT_ID environment variable is not set');
+    process.exit(1);
+  }
+  const { PUBSUB_PROJECT_ID, PUBSUB_EMULATOR_HOST } = process.env;
+  console.dir({ PUBSUB_PROJECT_ID, PUBSUB_EMULATOR_HOST });
   // Read JSON configuration file
-  const data = await readFile('./scripts/initPubSub/config.json', 'utf8');
+  const data = await readFile('./config.json', 'utf8');
   const mappings = JSON.parse(data);
 
   const pubsubClient = new PubSub({ projectId: process.env.PUBSUB_PROJECT_ID });
