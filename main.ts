@@ -2,6 +2,7 @@
 import { readFile, access, constants } from 'fs/promises';
 
 import { PubSub, Topic } from '@google-cloud/pubsub';
+import { Command } from 'commander';
 import dotenv from 'dotenv';
 
 async function createOrGetSubscription(topic: Topic, subscriptionName: string) {
@@ -54,7 +55,14 @@ async function possiblyReadFromDotEnv(dotenvPath: string) {
 }
 
 async function main() {
-  await possiblyReadFromDotEnv('./.env');
+  const program = new Command();
+  program
+    .option('--env <path>', 'The path to the .env file')
+    .argument('<pubsubConfig>', 'pubsub subscriptions mappings file')
+    .parse();
+
+  const dotenvPath = program.opts().env || './.env';
+  await possiblyReadFromDotEnv(dotenvPath);
 
   // Check if PUBSUB_EMULATOR_HOST environment variable is set
   if (!process.env.PUBSUB_EMULATOR_HOST) {
@@ -69,7 +77,8 @@ async function main() {
   const { PUBSUB_PROJECT_ID, PUBSUB_EMULATOR_HOST } = process.env;
   console.dir({ PUBSUB_PROJECT_ID, PUBSUB_EMULATOR_HOST });
   // Read JSON configuration file
-  const data = await readFile('./config.json', 'utf8');
+  const pubsubMappingsFileName = program.args[0];
+  const data = await readFile(pubsubMappingsFileName, 'utf8');
   const mappings = JSON.parse(data);
 
   const pubsubClient = new PubSub({ projectId: process.env.PUBSUB_PROJECT_ID });

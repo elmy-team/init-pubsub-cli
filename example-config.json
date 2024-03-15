@@ -1,8 +1,5 @@
 {
   "topic1-with-single-sub": ["topic1-sub1"],
-  "topic2-with-subs": [
-    "topic2-sub1",
-    "topic2-sub2"
-  ],
+  "topic2-with-subs": ["topic2-sub1", "topic2-sub2"],
   "topic3-without-sub": []
 }

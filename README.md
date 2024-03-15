@@ -22,8 +22,13 @@ npm install -g @elmy-oss/init-pubsub-cli
 
 ### Run
 
+- when globally installed
 ```bash
-init-pubsub
+init-pubsub --env=./example.local.env scripts/initPubSub/config.json
+```
+- explicit call using `npm` / `npx`
+```bash
+npx @elmy-oss/init-pubsub-cli ./scripts/initPubSub/config.json
 ```
 
 ## Config
@@ -31,6 +36,7 @@ init-pubsub
 ### Environment variables
 - `PUBSUB_EMULATOR_HOST`: is the host of the pubsub emulator (edit accordingly when port-forwarding from test envs)
 - `PUBSUB_PROJECT_ID`: is the project id of the google pubsub project
+- Please note that you have the option to use current shell's environment variables or to utilize an `.env` file. Additionally, you can specify an alternate **dotenv** file by using the `--env=dotenv-file` switch, as demonstrated in the **Run** section above.
 
 ### Setup
 - Either copy [`example.local.env`](./example.local.env) or [`example.testenv.env`](./example.testenv.env) to `.env` and edit accordingly

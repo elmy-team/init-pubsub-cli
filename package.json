@@ -1,12 +1,12 @@
 {
   "name": "@elmy-oss/init-pubsub-cli",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "CLI for adding missing google pubsub subcriptions from config.json",
   "keywords": [],
   "license": "ISC",
   "author": "",
   "bin": {
-    "init-pubsub": "./dist/main.js"
+    "init-pubsub": "dist/main.js"
   },
   "scripts": {
     "build": "npm run clean && tsc && chmod +x dist/main.js",

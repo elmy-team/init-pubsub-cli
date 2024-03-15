@@ -22,8 +22,8 @@
     "outDir": "./dist",
     "types": ["node"],
     "lib": ["es2023"],
-    "baseUrl": "./",
+    "baseUrl": "./"
   },
   "include": ["**/*.ts"],
-  "exclude": ["node_modules", "dist", "**/*.test.ts"],
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }
